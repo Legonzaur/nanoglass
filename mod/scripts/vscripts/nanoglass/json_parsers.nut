@@ -196,29 +196,7 @@ bool function Spyglass_TryParsePlayerInfraction(table response, Spyglass_PlayerI
         outInfraction.ID = expect int(response["id"]);
         outInfraction.UniqueId = expect string(response["uniqueId"]);
 
-        if (Spyglass_TryParseTable(response, "owningPlayer"))
-        {
-            table owner = expect table(response["owningPlayer"]);
-            Spyglass_PlayerInfo parsedOwner;
-
-            if (Spyglass_TryParsePlayerInfo(owner, parsedOwner))
-            {
-                outInfraction.OwningPlayer = parsedOwner;
-            }
-        }
-
         outInfraction.IssuerId = expect string(response["issuerId"]);
-
-        if (Spyglass_TryParseTable(response, "issuerInfo"))
-        {
-            table issuer = expect table(response["issuerInfo"]);
-            Spyglass_PlayerInfo parsedIssuer;
-
-            if (Spyglass_TryParsePlayerInfo(issuer, parsedIssuer))
-            {
-                outInfraction.IssuerInfo = parsedIssuer;
-            }
-        }
 
         outInfraction.IssuedAtTimestamp = expect int(response["issuedAtTimestamp"]);
         outInfraction.IssuedAtReadable = expect string(response["issuedAtReadable"]);

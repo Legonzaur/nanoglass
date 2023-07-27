@@ -1,3 +1,5 @@
+//NOT USED
+
 /**
  * This file holds globals and functions to access them.
  * Loaded first so all other files can access these when required.

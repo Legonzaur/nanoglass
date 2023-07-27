@@ -19,7 +19,15 @@ void function OnClientConnected(entity player)
         if(data.Success == false) return
         if(!(player.GetUID() in data.Matches)) return
         foreach(sanction in data.Matches[player.GetUID()]){
-            if(sanction.PunishmentType == )
+            if(sanction.PunishmentType == Spyglass_InfractionType.Griefing ||
+                sanction.PunishmentType == Spyglass_InfractionType.Exploiting ||
+                sanction.PunishmentType == Spyglass_InfractionType.Cheating){
+                    NSDisconnectPlayer(player, format("%s %s","Banned by Spyglass for", sanction.PunishmentReadable))
+                }
         }
     })
+}
+
+void function nanoglassPrintt(string content) {
+	printt(format("%s %s", "\x1b[38;2;255;255;255m[NANOGLASS]\x1b[0m", content))
 }

@@ -7,28 +7,20 @@
         {
             "Name": "spyglass_api_hostname",
             "DefaultValue": "https://spyglass.tf/"
-        },
-        {
-            "Name": "spyglass_appeal_link",
-            "DefaultValue": "https://spyglass.tf"
-        },
-        {
-            "Name": "spyglass_welcome_message",
-            "DefaultValue": "This server is monitored by Spyglass. Global sanctions are in effect."
         }
     ],
     "Scripts": [
         {
-            "Path": "spyglass/cache.nut",
+            "Path": "nanoglass/models.nut",
             "RunOn": "SERVER && MP"
         },
         {
-            "Path": "spyglass/api/api_root.nut",
-            "RunOn": "UI || (CLIENT || SERVER) && MP"
+            "Path": "nanoglass/json_parsers.nut",
+            "RunOn": "SERVER && MP"
         },
         {
-            "Path": "spyglass/api/api_sanctions.nut",
-            "RunOn": "UI || (CLIENT || SERVER) && MP"
+            "Path": "nanoglass/api/api_sanctions.nut",
+            "RunOn": "SERVER && MP"
         },
         {
             "Path": "nanoglass/nanoglass.nut",

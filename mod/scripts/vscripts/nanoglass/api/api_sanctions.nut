@@ -1,5 +1,5 @@
 /**
- * This is the Spyglass API wrapper for this mod. 
+ * This is the Spyglass API wrapper for this mod.
  * Feel free to call functions in your own mods if required!
  * Try to be mindful of the backend however, as you'll potentially get ratelimited or blacklisted for abuse.
  * Controller: /sanctions
@@ -31,7 +31,7 @@ void function SpyglassApi_OnQueryPlayerSanctionsSuccessful(HttpRequestResponse r
 void function SpyglassApi_OnQueryPlayerSanctionsFailed(HttpRequestFailure failure, void functionref(Spyglass_SanctionSearchResult) callback)
 {
     printt(format("[Spyglass] SpyglassApi_QueryPlayerSanctions() failed with error code %i: %s", failure.errorCode, failure.errorMessage));
-    
+
     if (callback == null)
     {
         return;
@@ -85,7 +85,7 @@ bool function SpyglassApi_QueryPlayerSanctions(array<string> uids, void function
         SpyglassApi_OnQueryPlayerSanctionsFailed(failure, callback);
     }
 
-    return SpyglassApi_MakeHttpRequest(request, onSuccess, onFailure);
+    return NSHttpRequest(request, onSuccess, onFailure);
 }
 
 void function SpyglassApi_OnQuerySanctionByIdSuccessful(HttpRequestResponse response, void functionref(Spyglass_SanctionSearchResult) callback)
@@ -111,7 +111,7 @@ void function SpyglassApi_OnQuerySanctionByIdSuccessful(HttpRequestResponse resp
 void function SpyglassApi_OnQuerySanctionByIdFailed(HttpRequestFailure failure, void functionref(Spyglass_SanctionSearchResult) callback)
 {
     printt(format("[Spyglass] SpyglassApi_QuerySanctionById() failed with error code %i: %s", failure.errorCode, failure.errorMessage));
-    
+
     if (callback == null)
     {
         return;
@@ -158,5 +158,5 @@ bool function SpyglassApi_QuerySanctionById(int id, void functionref(Spyglass_Sa
         SpyglassApi_OnQuerySanctionByIdFailed(failure, callback);
     }
 
-    return SpyglassApi_MakeHttpRequest(request, onSuccess, onFailure);
+    return NSHttpRequest(request, onSuccess, onFailure);
 }
