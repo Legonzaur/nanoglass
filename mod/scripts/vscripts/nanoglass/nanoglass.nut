@@ -23,6 +23,7 @@ void function OnClientConnected(entity player)
                 sanction.Type == Spyglass_InfractionType.Exploiting ||
                 sanction.Type == Spyglass_InfractionType.Cheating){
                     NSDisconnectPlayer(player, format("%s %s","Banned by Spyglass for", sanction.TypeReadable))
+                    nanoglassPrintt(player.GetUID() + " was kicked for " + sanction.TypeReadable);
                 }
         }
     })
