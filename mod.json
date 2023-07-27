@@ -9,98 +9,18 @@
             "DefaultValue": "https://spyglass.tf/"
         },
         {
-            "Name": "spyglass_api_token",
-            "DefaultValue": ""
-        },
-        {
             "Name": "spyglass_appeal_link",
             "DefaultValue": "https://spyglass.tf"
         },
         {
-            "Name": "spyglass_admin_uids",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_admin_immunity",
-            "DefaultValue": "1"
-        },
-        {
-            "Name": "spyglass_admin_auth_password",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_maintainers_are_admins", 
-            "DefaultValue": "1"
-        },
-        {
-            "Name": "spyglass_welcome_message_enabled",
-            "DefaultValue": "1"
-        },
-        {
             "Name": "spyglass_welcome_message",
             "DefaultValue": "This server is monitored by Spyglass. Global sanctions are in effect."
-        },
-        {
-            "Name": "spyglass_message_mode",
-            "DefaultValue": "0"
-        },
-        {
-            "Name": "spyglass_sanction_message_mode",
-            "DefaultValue": "0"
-        },
-        {
-            "Name": "spyglass_use_banlist_for_bans",
-            "DefaultValue": "0"
-        },
-        {
-            "Name": "spyglass_cache_api_latest_version",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_cache_api_minimum_version",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_cache_muted_players",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_cache_connected_players",
-            "DefaultValue": ""
-        },
-        {
-            "Name": "spyglass_cache_disabled_from_error",
-            "DefaultValue": "0"
         }
     ],
     "Scripts": [
         {
-            "Path": "spyglass/models.nut",
-            "RunOn": "UI || (CLIENT || SERVER) && MP"
-        },
-        {
-            "Path": "spyglass/ui_globals.nut",
-            "RunOn": "UI"
-        },
-        {
-            "Path": "spyglass/client_globals.nut",
-            "RunOn": "CLIENT && MP",
-            "ClientCallback":
-            {
-                "After": "Spyglass_ClientGlobalsInit"
-            }
-        },
-        {
             "Path": "spyglass/server_globals.nut",
             "RunOn": "SERVER && MP"
-        },
-        {
-            "Path": "spyglass/utils.nut",
-            "RunOn": "UI || (CLIENT || SERVER) && MP"
-        },
-        {
-            "Path": "spyglass/json_parsers.nut",
-            "RunOn": "UI || (CLIENT || SERVER) && MP"
         },
         {
             "Path": "spyglass/api/api_root.nut",
@@ -111,104 +31,12 @@
             "RunOn": "UI || (CLIENT || SERVER) && MP"
         },
         {
-            "Path": "spyglass/api/api_authentication.nut",
-            "RunOn": "(CLIENT || SERVER) && MP"
-        },
-        {
-            "Path": "spyglass/api/api_players.nut",
-            "RunOn": "(CLIENT || SERVER) && MP"
-        },
-        {
-            "Path": "spyglass/player_tracking.nut",
-            "RunOn": "SERVER && MP"
-        },
-        {
-            "Path": "spyglass/server_authentication.nut",
-            "RunOn": "SERVER && MP",
-            "ServerCallback":
-            {
-                "Before": "Spyglass_AuthenticationServerInit",
-                "After": "Spyglass_AuthenticationServerInitAfter"
-            }
-        },
-        {
-            "Path": "spyglass/client_authentication.nut",
-            "RunOn": "CLIENT && MP",
-            "ClientCallback":
-            {
-                "Before": "Spyglass_AuthenticationClientInit"
-            }
-        },
-        {
-            "Path": "spyglass/sanction_manager.nut",
-            "RunOn": "SERVER && MP",
-            "ServerCallback":
-            {
-                "After": "Spyglass_InitSanctionManager"
-            }
-        },
-        {
-            "Path": "spyglass/spyglass.nut",
+            "Path": "nanoglass/nanoglass.nut",
             "RunOn": "SERVER && MP",
             "ServerCallback":
             {
                 "After": "Spyglass_Init"
             }
-        },
-        {
-            "Path": "spyglass/admin_commands.nut",
-            "RunOn": "SERVER && MP",
-            "ServerCallback":
-            {
-                "Before": "Spyglass_AdminCommandsInit"
-            }
-        },
-        {
-            "Path": "ui/panel_spyglass_playerlist.nut",
-            "RunOn": "UI"
-        },
-        {
-            "Path": "ui/panel_spyglass_add_sanction.nut",
-            "RunOn": "UI"
-        },
-        {
-            "Path": "ui/panel_spyglass_view_sanctions.nut",
-            "RunOn": "UI"
-        },
-        {
-            "Path": "ui/menu_spyglass_admin.nut",
-            "RunOn": "UI",
-            "UICallback":
-            {
-                "Before": "AddSpyglassAdminMenu",
-                "After": "AddSpyglassFooterButton"
-            }
         }
-    ],
-    "ConCommands": [
-        {
-            "Name": "spyglass_warn",
-            "Function": "SpyglassCommand_WarnPlayer",
-            "Context": "CLIENT",
-            "Flags": 0,
-            "HelpString": "spyglass_warn [uid] [duration in minutes] [type] [reason]"
-        },
-        {
-            "Name": "spyglass_mute",
-            "Function": "SpyglassCommand_MutePlayer",
-            "Context": "CLIENT",
-            "Flags": 0,
-            "HelpString": "spyglass_mute [uid] [duration in minutes] [type] [reason]"
-        },
-        {
-            "Name": "spyglass_ban",
-            "Function": "SpyglassCommand_BanPlayer",
-            "Context": "CLIENT",
-            "Flags": 0,
-            "HelpString": "spyglass_ban [uid] [duration in minutes] [type] [reason]"
-        }
-    ],
-    "Localisation": [
-      "resource/spyglass_localisation_%language%.txt"
     ]
 }
