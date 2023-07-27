@@ -1,6 +1,6 @@
 {
-    "Name": "IMC.Spyglass",
-    "Description": "A server-side mod that handles sanctions based on player reports on the community Northstar Discord.",
+    "Name": "Nanoglass",
+    "Description": "A minimalistic fork of Spyglass",
     "Version": "2.2.0",
     "LoadPriority": 2,
     "ConVars": [

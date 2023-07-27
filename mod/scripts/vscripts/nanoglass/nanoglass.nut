@@ -4,7 +4,7 @@ bool Spyglass_HasInitialized = false;
 
 void function Spyglass_Init()
 {
-    printt("[Nanoglass] Spyglass_Init() called.");
+    nanoglassPrintt("Spyglass_Init() called.");
     AddCallback_OnClientConnected(OnClientConnected);
 }
 
@@ -15,14 +15,14 @@ void function OnClientConnected(entity player)
         return;
     }
 
-    SpyglassApi_QuerySanctionById(player.GetUID(), void function(Spyglass_SanctionSearchResult data) {
-        if(data.Success == false) return
+    SpyglassApi_QuerySanctionById(player.GetUID(), void function(Spyglass_SanctionSearchResult data) : (player) {
+        if(data.ApiResult.Success == false) return
         if(!(player.GetUID() in data.Matches)) return
         foreach(sanction in data.Matches[player.GetUID()]){
-            if(sanction.PunishmentType == Spyglass_InfractionType.Griefing ||
-                sanction.PunishmentType == Spyglass_InfractionType.Exploiting ||
-                sanction.PunishmentType == Spyglass_InfractionType.Cheating){
-                    NSDisconnectPlayer(player, format("%s %s","Banned by Spyglass for", sanction.PunishmentReadable))
+            if(sanction.Type == Spyglass_InfractionType.Griefing ||
+                sanction.Type == Spyglass_InfractionType.Exploiting ||
+                sanction.Type == Spyglass_InfractionType.Cheating){
+                    NSDisconnectPlayer(player, format("%s %s","Banned by Spyglass for", sanction.TypeReadable))
                 }
         }
     })

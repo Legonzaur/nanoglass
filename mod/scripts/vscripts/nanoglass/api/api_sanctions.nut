@@ -129,14 +129,8 @@ void function SpyglassApi_OnQuerySanctionByIdFailed(HttpRequestFailure failure, 
  * @param id The id of the sanction to retrieve.
  * @returns Whether or not the HTTP request successfully started.
  */
-bool function SpyglassApi_QuerySanctionById(int id, void functionref(Spyglass_SanctionSearchResult) callback)
+bool function SpyglassApi_QuerySanctionById(string id, void functionref(Spyglass_SanctionSearchResult) callback)
 {
-    if (id < 0)
-    {
-        CodeWarning("[Spyglass] Attempted to query a sanction with a negative id.");
-        return false;
-    }
-
     if (callback == null)
     {
         CodeWarning("[Spyglass] Attempted to query a sanction with no callback.");
@@ -146,7 +140,7 @@ bool function SpyglassApi_QuerySanctionById(int id, void functionref(Spyglass_Sa
     HttpRequest request;
     request.method = HttpRequestMethod.GET;
     request.url = Spyglass_SanitizeUrl(format("%s/sanctions/get_by_id", Spyglass_GetApiHostname()));
-    request.queryParameters["id"] <- [id.tostring()];
+    request.queryParameters["id"] <- [id];
 
     void functionref(HttpRequestResponse) onSuccess = void function (HttpRequestResponse response) : (callback)
     {
@@ -159,6 +153,12 @@ bool function SpyglassApi_QuerySanctionById(int id, void functionref(Spyglass_Sa
     }
 
     return NSHttpRequest(request, onSuccess, onFailure);
+}
+
+/** Returns the base hostname of the configured Spyglass API backend. */
+string function Spyglass_GetApiHostname()
+{
+    return strip(GetConVarString("spyglass_api_hostname"));
 }
 
 /** Returns a sanitized url for the Spyglass API */
