@@ -2,6 +2,11 @@
  * This file holds globals and functions to access them.
  * Loaded first so all other files can access these when required.
  */
+global function Nanoglass_CachePlayers;
+global function Spyglass_GetConVarStringArray;
+global function Nanoglass_GetAllowedPlayers;
+global function Nanoglass_GetBannedPlayers;
+
 
 table<string, number> Nanoglass_Allowed = {};
 table<string, number> Nanoglass_Banned = {};
@@ -20,4 +25,19 @@ void function Nanoglass_CachePlayers()
     }
 
     SetConVarString("spyglass_cache_connected_players", cache);
+}
+
+table<string, number> Nanoglass_GetAllowedPlayers(){
+    return Nanoglass_Allowed
+}
+
+table<string, number> Nanoglass_GetBannedPlayers(){
+    return Nanoglass_Banned
+}
+
+/** Splits the value of the given string convar into an array, using commas as a separator. */
+array<string> function Spyglass_GetConVarStringArray(string cvarName)
+{
+    string clean = strip(GetConVarString(cvarName));
+    return split(clean, ",");
 }

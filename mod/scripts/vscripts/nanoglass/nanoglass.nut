@@ -15,7 +15,11 @@ void function OnClientConnected(entity player)
         return;
     }
 
-    SpyglassApi_QuerySanctionById(player.GetUID(), void functionref(Spyglass_SanctionSearchResult) {
-        
+    SpyglassApi_QuerySanctionById(player.GetUID(), void function(Spyglass_SanctionSearchResult data) {
+        if(data.Success == false) return
+        if(!(player.GetUID() in data.Matches)) return
+        foreach(sanction in data.Matches[player.GetUID()]){
+            if(sanction.PunishmentType == )
+        }
     })
 }

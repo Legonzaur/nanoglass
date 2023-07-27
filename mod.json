@@ -19,7 +19,7 @@
     ],
     "Scripts": [
         {
-            "Path": "spyglass/server_globals.nut",
+            "Path": "spyglass/cache.nut",
             "RunOn": "SERVER && MP"
         },
         {
