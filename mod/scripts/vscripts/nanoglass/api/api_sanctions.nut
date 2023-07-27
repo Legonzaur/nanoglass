@@ -160,3 +160,14 @@ bool function SpyglassApi_QuerySanctionById(int id, void functionref(Spyglass_Sa
 
     return NSHttpRequest(request, onSuccess, onFailure);
 }
+
+/** Returns a sanitized url for the Spyglass API */
+string function Spyglass_SanitizeUrl(string url)
+{
+    while (url.find("//") != null)
+    {
+        url = StringReplace(url, "//", "/", true, true);
+    }
+
+    return strip(url);
+}
